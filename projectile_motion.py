@@ -8,6 +8,16 @@ yellow = (255, 255, 0)
 White= (255,255,255)
 v = int(input('initial velocity'))
 Theta =int(input('angle'))
+while True:
+    try:
+        hei = int(input('Enter height between[0,400) '))
+        if hei < 0 or hei > 400:
+            raise ValueError
+        break
+    except ValueError:
+        print('Please enter a valid integer between 1 and 100.')
+
+Red=(188,39,50)
 Font = pygame.font.SysFont('comicsans',16)
 Blue =(100,149,237)
 win = pygame.display.set_mode((width, height))
@@ -88,7 +98,7 @@ class Object:
     
          
 
-ball = Object(Theta, -390, 0, 10, yellow, v)
+ball = Object(Theta, -370,(hei), 10, yellow, v)
 def main():
     run = True
     clock = pygame.time.Clock()
@@ -104,6 +114,10 @@ def main():
         ball.draw(win)
         
         pygame.draw.line(win, White, (0, 400), (800, 400), 2)
+        pygame.draw.line(win, Red, (20, 400), (20, (400-hei)), 2)
+        pygame.draw.line(win, Red, (0, (400-hei)), (20, (400-hei)), 2)
+
+
         pygame.display.update()
     pygame.quit()
     sys.exit()
